@@ -58,22 +58,35 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+<<<<<<< HEAD
   '/categories': typeof CategoriesRoute
+=======
+>>>>>>> c3622a7 (ORM)
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/todos': typeof TodosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
+<<<<<<< HEAD
   fullPaths: '/' | '/categories' | '/dashboard' | '/login' | '/todos'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/categories' | '/dashboard' | '/login' | '/todos'
   id: '__root__' | '/' | '/categories' | '/dashboard' | '/login' | '/todos'
+=======
+  fullPaths: '/' | '/dashboard' | '/login' | '/todos'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/dashboard' | '/login' | '/todos'
+  id: '__root__' | '/' | '/dashboard' | '/login' | '/todos'
+>>>>>>> c3622a7 (ORM)
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+<<<<<<< HEAD
   CategoriesRoute: typeof CategoriesRoute
+=======
+>>>>>>> c3622a7 (ORM)
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
   TodosRoute: typeof TodosRoute
@@ -102,6 +115,7 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+<<<<<<< HEAD
     '/categories': {
       id: '/categories'
       path: '/categories'
@@ -109,6 +123,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+=======
+>>>>>>> c3622a7 (ORM)
     '/': {
       id: '/'
       path: '/'
@@ -121,7 +137,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+<<<<<<< HEAD
   CategoriesRoute: CategoriesRoute,
+=======
+>>>>>>> c3622a7 (ORM)
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
   TodosRoute: TodosRoute,
