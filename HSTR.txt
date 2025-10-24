@@ -1,0 +1,7 @@
+pnpm i
+pnpm db:migrade
+pnpm db:migrate
+history > Hustory.txt
+pnpm dev
+Y
+doskey /history > History.txt
