@@ -16,7 +16,8 @@
     "db:push": "pnpm --filter @ithub-shoes/db db:push",
     "db:studio": "pnpm --filter @ithub-shoes/db db:studio",
     "db:generate": "pnpm --filter @ithub-shoes/db db:generate",
-    "db:migrate": "pnpm --filter @ithub-shoes/db db:migrate"
+    "db:migrate": "pnpm --filter @ithub-shoes/db db:migrate",
+    "db:seed": "pnpm --filter @ithub-shoes/db db:seed"
   },
   "dependencies": {
     "dotenv": "^17.2.2",

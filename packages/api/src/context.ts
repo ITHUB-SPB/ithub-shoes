@@ -6,6 +6,7 @@ export async function createContext(req: IncomingHttpHeaders) {
 	const session = await auth.api.getSession({
 		headers: fromNodeHeaders(req),
 	});
+	
 	return {
 		session,
 	};
