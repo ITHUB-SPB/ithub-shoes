@@ -1,5 +1,6 @@
-import { protectedProcedure, publicProcedure } from "../index";
 import type { RouterClient } from "@orpc/server";
+
+import { protectedProcedure, publicProcedure } from "../index";
 import { todoRouter } from "./todo";
 import { categoriesRouter } from "./categories";
 
