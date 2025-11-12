@@ -17,5 +17,7 @@ export const appRouter = {
 	todo: todoRouter,
 	categories: categoriesRouter
 };
+
+
 export type AppRouter = typeof appRouter;
 export type AppRouterClient = RouterClient<typeof appRouter>;
