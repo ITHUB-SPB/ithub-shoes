@@ -1,9 +1,8 @@
-import z from "zod";
 import prisma from "@ithub-shoes/db";
-import { publicProcedure } from "../index";
+import { appContract } from "../contracts";
 
 export const todoRouter = {
-	getAll: publicProcedure.handler(async () => {
+	getAll: appContract.todo.getAll.handler(async () => {
 		return await prisma.todo.findMany({
 			orderBy: {
 				id: "asc",
@@ -11,8 +10,7 @@ export const todoRouter = {
 		});
 	}),
 
-	create: publicProcedure
-		.input(z.object({ text: z.string().min(1) }))
+	create: appContract.todo.create
 		.handler(async ({ input }) => {
 			return await prisma.todo.create({
 				data: {
@@ -21,8 +19,7 @@ export const todoRouter = {
 			});
 		}),
 
-	toggle: publicProcedure
-		.input(z.object({ id: z.number(), completed: z.boolean() }))
+	toggle: appContract.todo.toggle
 		.handler(async ({ input }) => {
 			return await prisma.todo.update({
 				where: { id: input.id },
@@ -30,8 +27,7 @@ export const todoRouter = {
 			});
 		}),
 
-	delete: publicProcedure
-		.input(z.object({ id: z.number() }))
+	delete: appContract.todo.delete
 		.handler(async ({ input }) => {
 			return await prisma.todo.delete({
 				where: { id: input.id },
