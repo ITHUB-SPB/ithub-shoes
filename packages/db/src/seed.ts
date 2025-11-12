@@ -6,24 +6,20 @@ async function seedCategories() {
     const categories = [
         {
             "id": 1,
-            "category_name": "Mocassins"
+            "title": "Basketball"
         },
         {
             "id": 2,
-            "category_name": "Escarpins"
+            "title": "Running"
         },
         {
             "id": 3,
-            "category_name": "Bottes & Bottines"
+            "title": "Casual"
         },
         {
             "id": 4,
-            "category_name": "Claquettes & Tongs"
+            "title": "Lifestyle"
         },
-        {
-            "id": 5,
-            "category_name": "Sandales & Mules"
-        }
     ]
     try {
         await prisma.category.createMany({ data: categories })
@@ -32,4 +28,32 @@ async function seedCategories() {
     }
 }
 
+async function seedProducts() {
+    const products = [
+        {
+            model: "Air Jordan 1",
+            category_id: 1
+        },
+        {
+            model: "Ultra Boost 21",
+            category_id: 2
+        },
+        {
+            model: "Classic Leather",
+            category_id: 3
+        },
+        {
+            model: "Future Rider",
+            category_id: 4
+        },
+    ]
+    try {
+        await prisma.product.createMany({ data: products })
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
 await seedCategories()
+await seedProducts()

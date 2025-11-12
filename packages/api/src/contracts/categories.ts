@@ -1,27 +1,36 @@
 import z from "zod";
 import { publicProcedure, protectedProcedure } from "../index";
 
+const categorySchema = z.object({ id: z.number(), title: z.string() })
+const getAllCategoriesSchema = z.array(categorySchema)
+const createCategorySchema = categorySchema.pick({ title: true })
+
+const inputIdSchema = z.object({ id: z.string().transform(Number) })
+
 export const categoriesContract = {
 	getAll: publicProcedure
-		.route({ method: "GET", path: "/todo" })
-		.output(z.array(z.object({ id: z.number(), text: z.string(), completed: z.boolean() }))),
+		.route({ method: "GET", path: "/categories", description: "All Categories" })
+		.output(getAllCategoriesSchema),
 
 	getOne: publicProcedure
-		.route({ method: "GET", path: "/todo" })
-		.output(z.array(z.object({ id: z.number(), text: z.string(), completed: z.boolean() }))),
+		.route({ method: "GET", path: "/categories/{id}", description: "Category by Id" })
+		.input(inputIdSchema)
+		.output(categorySchema),
 
 	create: protectedProcedure
-		.route({ method: "POST", path: "/todo" })
-		.input(z.object({ text: z.string().min(1) }))
-		.output(z.array(z.object({ id: z.number(), text: z.string(), completed: z.boolean() }))),
+		.route({ method: "POST", path: "/categories", description: "New Category" })
+		.input(createCategorySchema)
+		.output(categorySchema),
 
 	update: protectedProcedure
-		.route({ method: "PATCH", path: "/todo" })
-		.input(z.object({ id: z.number(), completed: z.boolean() }))
-		.output(z.object({ id: z.number(), text: z.string(), completed: z.boolean() })),
+		.route({ method: "PATCH", path: "/categories/{id}", inputStructure: "detailed", description: "Update Category" })
+		.input(z.object({
+			params: inputIdSchema,
+			body: createCategorySchema
+		}))
+		.output(categorySchema),
 
 	delete: protectedProcedure
-		.route({ method: "DELETE", path: "/todo" })
-		.input(z.object({ id: z.number() }))
-		.output(z.object({ status: z.enum(["204", "404", "400"]) })),
+		.route({ method: "DELETE", path: "/categories/{id}", description: "Delete Category" })
+		.input(inputIdSchema)
 };

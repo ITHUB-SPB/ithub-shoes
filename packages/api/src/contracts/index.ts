@@ -1,8 +1,8 @@
-import { todoContract } from "./todo";
+import { publicProcedure } from "..";
 import { categoriesContract } from "./categories";
 
 export const appContract = {
-	todo: todoContract,
+	healthCheck: publicProcedure.route({ path: "/healthcheck", method: "GET" }),
 	categories: categoriesContract
 };
 
