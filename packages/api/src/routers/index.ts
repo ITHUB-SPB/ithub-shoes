@@ -1,21 +1,15 @@
 import type { RouterClient } from "@orpc/server";
 
-import { protectedProcedure, publicProcedure } from "../index";
-import { todoRouter } from "./todo";
+import { appContract } from "../contracts";
 import { categoriesRouter } from "./categories";
 
 export const appRouter = {
-	healthCheck: publicProcedure.handler(() => {
+	healthCheck: appContract.healthCheck.handler(() => {
 		return "OK";
 	}),
-	privateData: protectedProcedure.handler(({ context }) => {
-		return {
-			message: "This is private",
-			user: context.session?.user,
-		};
-	}),
-	todo: todoRouter,
 	categories: categoriesRouter
 };
+
+
 export type AppRouter = typeof appRouter;
 export type AppRouterClient = RouterClient<typeof appRouter>;

@@ -24,7 +24,7 @@
     "@ithub-shoes/auth": "workspace:*",
     "@ithub-shoes/db": "workspace:*",
     "@orpc/client": "catalog:",
-    "@orpc/contract": "^1.10.4",
+    "@orpc/contract": "^1.11.1",
     "@orpc/openapi": "catalog:",
     "@orpc/server": "catalog:",
     "@orpc/zod": "catalog:",
