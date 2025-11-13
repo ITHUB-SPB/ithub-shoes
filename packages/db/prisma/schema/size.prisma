@@ -1,0 +1,7 @@
+model Size {
+    id       Int       @id @default(autoincrement())
+    value    String    @unique
+    products Product[]
+
+    @@map("size")
+}

@@ -1,0 +1,7 @@
+model Gender {
+    id       Int       @id @default(autoincrement())
+    name     String    @unique
+    products Product[]
+
+    @@map("gender")
+}

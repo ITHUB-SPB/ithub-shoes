@@ -1,0 +1,22 @@
+model Product {
+    id          Int        @id @default(autoincrement())
+    name        String
+    price       Float
+    description String?
+    image       String?
+    inStock    Boolean @default(true)
+
+    brandId     Int 
+    brand       Brand   @relation(fields: [brandId], references: [id])
+
+    shoes_categoryId  Int
+    shoes_category    Shoes_Category @relation(fields: [shoes_categoryId], references: [id])
+
+    genderId    Int
+    gender      Gender  @relation(fields: [genderId], references: [id])
+
+    sizeId      Int
+    size        Size    @relation(fields: [genderId], references: [id])
+
+    @@map("products") 
+}

@@ -1,0 +1,7 @@
+model Shoes_Category {
+    id              Int      @id @default(autoincrement())
+    category_name   String   @unique
+    products        Product[]
+
+    @@map("shoes_category")
+}
