@@ -1,11 +1,78 @@
 generator client {
-  provider     = "prisma-client"
+  provider     = "prisma-client-js"
   output       = "../generated"
-  moduleFormat = "esm"
-  runtime      = "nodejs"
 }
 
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+  role     String
+  shoes    Shoe[]
+}
+
+model Shoe {
+  id       Int    @id @default(autoincrement())
+  brand    String 
+  model    String
+  type     String
+  gender   String
+  size     Int
+  color    String
+  material String
+  price    Float
+  authorId Int
+  author   User   @relation(fields: [authorId], references: [id])
+}
+
+model brands {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  discription String
+  shoes Shoe[]
+}
+
+model categories {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  discription String
+  size Int
+  color String
+  gender String
+  price Float
+  shoes Shoe[]
+}
+
+model products {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  discription String
+  stock Int
+  InStock Boolean @default(true)
+  brand String @relation(fields: [brandId], references: [id])
+  category String @relation(fields: [categoryId], references: [id])
+  images image[]
+  brandId Int
+  categoryId Int
+  colors color[]
+  price Float
+  shoes Shoe[]
+}
+
+model size {
+  id    Int    @id @default(autoincrement())
+  value Int
+  products products[]
+}
+
+model color {
+  id    Int    @id @default(autoincrement())
+  value String
+  products products[]
 }

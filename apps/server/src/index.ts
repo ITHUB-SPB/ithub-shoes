@@ -22,6 +22,8 @@ const baseCorsConfig = {
 	maxAge: 86400,
 };
 
+
+
 const rpcHandler = new RPCHandler(appRouter, {
 	plugins: [
 		new CORSPlugin({

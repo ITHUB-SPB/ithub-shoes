@@ -20,12 +20,14 @@
     "db:seed": "pnpm --filter @ithub-shoes/db db:seed"
   },
   "dependencies": {
+    "@prisma/client": "catalog:",
     "dotenv": "^17.2.2",
     "zod": "^4.1.11"
   },
   "devDependencies": {
     "@types/node": "^22.13.11",
     "oxlint": "^1.12.0",
+    "prisma": "^6.18.0",
     "tsdown": "^0.15.5",
     "tsx": "^4.20.6"
   },
