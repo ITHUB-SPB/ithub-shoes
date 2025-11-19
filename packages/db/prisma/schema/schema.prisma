@@ -9,3 +9,14 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+
+// Синтаксис Prisma(Импорт)
+
+/// @file: "./auth.prisma"
+/// @file: "./brand.prisma"
+/// @file: "./category.prisma"
+/// @file: "./gender.prisma"
+/// @file: "./product.prisma"
+/// @file: "./size.prisma"
+/// @file: "./todo.prisma"
