@@ -1,8 +1,6 @@
 import { PrismaClient } from "../prisma/generated/client"
-import fs from "node:fs"
 import xlsx from "xlsx"
 import path from "node:path"
-import { object } from "zod"
 import type { Prisma } from "../prisma/generated/client"
 
 const prisma = new PrismaClient()
@@ -91,10 +89,6 @@ async function seedLookups(rows: RawData[]): Promise<LookupMaps> {
     await Promise.all(sizeValues.map((value) => prisma.size.upsert({ where: { value }, update: {}, create: { value } })))
     await Promise.all(colorNames.map((value) => prisma.color.upsert({ where: { value }, update: {}, create: { value } })))
 
-    // Сам написал себе комментарий: upsert это запись в бд в указанную таблицу.
-    // Where - это условие поиска
-    // update - что делать если запись найдена (В нашем случае ничего не делать)
-    // create - что делать когда запись не найдена (В нашем случае создается запись в таблицу с нашим названием)
 
 
     const [brands, categories, genders, sizes, colors] = await Promise.all([
