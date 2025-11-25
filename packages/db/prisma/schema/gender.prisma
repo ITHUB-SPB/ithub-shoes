@@ -1,0 +1,5 @@
+model Gender {
+  id    Int    @id @default(autoincrement())
+  title  String @unique
+  products Product[]
+}

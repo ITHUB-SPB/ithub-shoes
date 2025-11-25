@@ -1,10 +1,27 @@
 model Product {
     id            Int            @id @default(autoincrement())
     model         String
+
+    material      String
+
+    price         Decimal
+
+    brandId      Int
+    brand         Brand          @relation(fields: [brandId], references: [id])
+
+    genderId     Int
+    gender        Gender         @relation(fields: [genderId], references: [id])
+
+    sizeId       Int
+    size          Size           @relation(fields: [sizeId], references: [id])
+
+    colorId      Int
+    color         Color          @relation(fields: [colorId], references: [id])    
     
-    category_id   Int
-    category      Category       @relation(fields: [category_id], references: [id])
+    categoryId   Int
+    category      Category       @relation(fields: [categoryId], references: [id])
     
     createdAt     DateTime       @default(now())
     updatedAt     DateTime       @updatedAt
 }
+

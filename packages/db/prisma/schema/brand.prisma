@@ -1,0 +1,5 @@
+model Brand {
+  id    Int    @id @default(autoincrement())
+  title  String @unique
+  products Product[]
+}
