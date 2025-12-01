@@ -293,7 +293,7 @@ importers:
   packages/db:
     dependencies:
       '@prisma/client':
-        specifier: 'catalog:'
+        specifier: 6.18.0
         version: 6.18.0(prisma@6.18.0(typescript@5.9.3))(typescript@5.9.3)
       dotenv:
         specifier: 'catalog:'
