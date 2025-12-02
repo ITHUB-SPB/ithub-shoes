@@ -15,6 +15,16 @@ const productSchema = z.object({
   updatedAt: z.string(),
 });
 
+const productListItemSchema = productSchema.partial();
+
+const getAllQuerySchema = z.object({
+  limit: z.enum(["10", "20", "50"]).optional(),
+  offset: z.string().regex(/^\d+$/).optional(),
+  sort: z.array(z.string()).optional(),
+  filter: z.array(z.string()).optional(),
+  select: z.string().optional(),
+})
+
 const createProductSchema = productSchema.pick({
   model: true,
   material: true,
@@ -31,7 +41,8 @@ const idInputSchema = z.object({ id: z.string().transform(Number) });
 export const productsContract = {
   getAll: publicProcedure
     .route({ method: "GET", path: "/products", description: "All Products" })
-    .output(z.array(productSchema)),
+    .input(getAllQuerySchema)
+    .output(z.array(productListItemSchema)),
 
   getOne: publicProcedure
     .route({
