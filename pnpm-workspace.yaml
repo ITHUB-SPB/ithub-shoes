@@ -15,7 +15,7 @@ catalog:
   typescript: ^5.8.2
   zod: ^4.1.11
 
-ignoredBuiltDependencies:
+onlyBuiltDependencies:
   - '@prisma/client'
   - '@prisma/engines'
   - esbuild

@@ -23,6 +23,7 @@
     "seed": "tsx ./src/seed.ts"
   },
   "devDependencies": {
+    "@types/xlsx": "^0.0.36",
     "prisma": "^6.15.0",
     "tsdown": "catalog:"
   },
@@ -33,6 +34,7 @@
     "@prisma/client": "catalog:",
     "dotenv": "catalog:",
     "tsx": "^4.20.6",
+    "xlsx": "^0.18.5",
     "zod": "catalog:"
   }
 }

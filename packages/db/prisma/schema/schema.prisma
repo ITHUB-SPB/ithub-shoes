@@ -9,3 +9,84 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Brand {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  products  Product[]
+}
+
+model Gender {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  products Product[]
+}
+
+model Size {
+  id        Int           @id @default(autoincrement())
+  value     String
+  products  ProductSize[]
+  @@unique([value])
+}
+
+model Color {
+  id        Int            @id @default(autoincrement())
+  value     String
+  products  ProductColor[]
+  @@unique([value])
+}
+
+model Material {
+  id        Int              @id @default(autoincrement())
+  value     String
+  products  ProductMaterial[]
+  @@unique([value])
+}
+
+model ProductSize {
+  id        Int     @id @default(autoincrement())
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+  size      Size    @relation(fields: [sizeId], references: [id], onDelete: Cascade)
+  sizeId    Int
+
+  @@unique([productId, sizeId])
+}
+
+model ProductColor {
+  id        Int     @id @default(autoincrement())
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+  color     Color   @relation(fields: [colorId], references: [id], onDelete: Cascade)
+  colorId   Int
+
+  @@unique([productId, colorId])
+}
+
+model ProductMaterial {
+  id        Int     @id @default(autoincrement())
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+  material  Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+  materialId Int
+
+  @@unique([productId, materialId])
+}
+
+model Product {
+  id          Int            @id @default(autoincrement())
+  model       String
+  brandId     Int?
+  brand       Brand?         @relation(fields: [brandId], references: [id])
+  category_id Int
+  category    Category       @relation(fields: [category_id], references: [id])
+  genderId    Int?
+  gender      Gender?        @relation(fields: [genderId], references: [id])
+  price       Float?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  sizes       ProductSize[]
+  colors      ProductColor[]
+  materials   ProductMaterial[]
+}
